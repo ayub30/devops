@@ -47,6 +47,11 @@ resource "aws_ecs_task_definition" "ecs-td" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "ecs_logs" {
+  name              = "/ecs/${var.ecs_family}"
+  retention_in_days = 7
+}
+
 resource "aws_ecs_service" "ecs-service" {
   name            = var.service_name
   launch_type     = "FARGATE"
